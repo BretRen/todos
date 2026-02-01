@@ -1,0 +1,39 @@
+name: Deploy Pdnode Todos
+
+on:
+  push:
+    branches:
+      - main # 确保这是你的主分支名
+
+permissions:
+  contents: write # 必须赋予写入权限，才能将打包结果推送到 gh-pages 分支
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Install pnpm 📦
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10 # 或者你本地使用的版本
+
+      - name: Setup Node ⚙️
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm' # 自动缓存 pnpm 依赖
+
+      - name: Install dependencies 🔧
+        run: pnpm install
+
+      - name: Build 🏗️
+        run: pnpm run build
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist
+          branch: gh-pages
