@@ -1,35 +1,27 @@
-@import './base.css';
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+@import "tailwindcss";
+@plugin "daisyui";
+:root {
+  /* 定义一套看起来舒服的字体 */
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+body {
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased; /* 让字体更平滑 */
+  -moz-osx-font-smoothing: grayscale;
+  color: #333; /* 稍微柔和一点的黑色 */
+  line-height: 1.5;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+.overflow-y-auto::-webkit-scrollbar {
+  width: 6px; /* 宽度变窄 */
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  @apply bg-base-300 rounded-full; /* 使用主题颜色 */
+}
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  @apply bg-base-content/20;
 }
